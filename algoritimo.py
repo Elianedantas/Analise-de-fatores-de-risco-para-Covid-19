@@ -3,11 +3,9 @@ import numpy as np
 from sklearn import preprocessing
 from sklearn.linear_model import Perceptron
 
-
 #importando a base de dados atraves do gitHub
 url = 'https://raw.githubusercontent.com/Elianedantas/Analise-de-fatores-de-risco-para-Covid-19/main/Registros_Casos_e_obitos_ESP.csv'
 base_Treinamento = pd.read_csv(url,sep=',', encoding = 'latin1').values
-
 
 #normalizando os dados
 def normalizarDados(base_Treinamento):
@@ -27,7 +25,6 @@ def normalizarDados(base_Treinamento):
     Pneumopatia = lb.transform(base_Treinamento[:,17])    
     Síndrome_De_Down = lb.transform(base_Treinamento[:,19])
 
-
     min_max = preprocessing.MinMaxScaler()
     Idade = min_max.fit_transform(base_Treinamento[:,11])
 
@@ -36,20 +33,19 @@ def normalizarDados(base_Treinamento):
                                       Pneumopatia,Síndrome_De_Down))
     return atributos_norm
 
-
 def treinarRedePerceptron(atributos_norm, diagnostico_norm):
     modelo =  Perceptron()
     modelo.fit(atributos_norm, diagnostico_norm)
     return modelo
-
 
 def Treinar(Asma,Cardiopatia,Diabetes,Doenca_Hepatica,Doenca_Neurologica,Doenca_Renal,Idade,Obesidade,Pneumopatia,Síndrome_De_Down):
     dadosT = normalizarDados(base_Treinamento)
     diagnostico_norm = base_Treinamento[:, 15]
 
     modelo = treinarRedePerceptron(dadosT, diagnostico_norm)
-    
-    teste = [[Asma,Cardiopatia,Diabetes,Doenca_Hepatica,Doenca_Neurologica,Doenca_Renal,Idade,Obesidade,Pneumopatia,Síndrome_De_Down]]
+
+    teste = [[Asma, Cardiopatia, Diabetes, Doenca_Hepatica, Doenca_Neurologica, Doenca_Renal, Idade, Obesidade, Pneumopatia, Síndrome_De_Down]]
+
     min_max = preprocessing.MinMaxScaler()
     testeT = min_max.transform(teste)
     return modelo.predict(testeT)

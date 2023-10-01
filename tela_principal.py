@@ -3,15 +3,16 @@ import algoritimo as a
 from tkinter import messagebox
 
 def diagnosticar():
-    if a.Treinar(radio_Asma.get(),radio_Cardiopatia.get(),radio_Diabetes.get(),radio_Doenca_Hepatica.get(),
-                 radio_Doenca_Neurologica.get(),radio_Doenca_Renal.get(),box_Idade.get(), radio_Obesidade.get(),
-                 radio_Pneumopatia.get(),radio_Síndrome_De_Down.get()) == 1:
+
+    if a.Treinar(radio_Asma.get(), radio_Cardiopatia.get(), radio_Diabetes.get(), radio_Doenca_Hepatica.get(), 
+        radio_Doenca_Neurologica.get(), radio_Doenca_Renal.get(), box_Idade.get(), radio_Obesidade.get(), 
+        radio_Pneumopatia.get(), radio_Síndrome_De_Down.get()) == 1:
         messagebox.showwarning(title="Resultado do diagnóstico",
-                               message='Você possui maiores fatores de risco para a covid-19.')     
+        message='Você possui maiores fatores de risco para a covid-19.')     
     else:
         messagebox.showinfo(title="Resultado do diagnóstico",
-                            message='Você não possui maiores fatores de risco para a covid-19.')
-   
+        message='Você não possui maiores fatores de risco para a covid-19.')
+            
 janela = Tk()
 
 radio_Asma = IntVar()
@@ -26,254 +27,103 @@ radio_Pneumopatia = IntVar()
 radio_Síndrome_De_Down = IntVar()
 
 janela.title("Fatores de risco para Covid-19")
-janela.geometry("%dx%d+%d+%d"% (520,300,400,200))
-janela = Frame(janela,bg="#C0C0C0")
-janela.pack() 
-titulo1 = Label(janela, 
-                   text="Fatores de risco para Covid-19",
-                   font="Roboto 20",
-                   bg = "#C0C0C0",
-                   relief="groove",
-                   border=1
-                   )
-titulo1.grid(column=0, row=0, columnspan=5, pady=17)
+largura = 800
+altura = 600
+pos_x = (janela.winfo_screenwidth() // 2) - (largura // 2)  # Centraliza horizontalmente
+pos_y = (janela.winfo_screenheight() // 2) - (altura // 2)  # Centraliza verticalmente
+janela.geometry(f"{largura}x{altura}+{pos_x}+{pos_y}")  # Defina a geometria da janela
 
-titulo2 = Label(janela, 
-                   text="Possui asma?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim2 = Radiobutton(janela, 
-                        text="Sim",
-                        variable=radio_Asma,
-                        value=1,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-radioNao2 = Radiobutton(janela, 
-                        text= "Não", 
-                        variable=radio_Asma, 
-                        value=0,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-titulo2.grid(column=0, row=1)
-radioSim2.grid(column=0, row=2)
-radioNao2.grid(column=1, row=2)
+def on_canvas_configure(event):
+    canvas.configure(scrollregion=canvas.bbox("all"))
 
+janela.title("Fatores de risco para Covid-19")
 
-titulo3 = Label(janela, 
-                   text="Possui Cardiopatia?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim3 = Radiobutton(janela, 
-                            text="Sim",
-                            variable=radio_Cardiopatia,
-                            value=1,
-                            font="Roboto 13",
-                            bg = "#C0C0C0"
-                            )
-radioNao3 = Radiobutton(janela, 
-                           text= "Não", 
-                           variable=radio_Cardiopatia, 
-                           value=0,
-                           font="Roboto 13",
-                           bg = "#C0C0C0"
-                           )
-titulo3.grid(column=2, row=1,columnspan=5)
-radioSim3.grid(column=2, row=2)
-radioNao3.grid(column=3, row=2)
+frame_principal = Frame(janela, bg="#C0C0C0")
+frame_principal.pack(fill="both", expand=True)
 
-titulo4 = Label(janela, 
-                   text="Possui Diabetes?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim4 = Radiobutton(janela, 
-                        text="Sim",
-                        variable=radio_Diabetes,
-                        value=1,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-radioNao4 = Radiobutton(janela, 
-                       text= "Não", 
-                       variable=radio_Diabetes, 
-                       value=0,
-                       font="Roboto 13",
-                       bg = "#C0C0C0"
-                       )
-titulo4.grid(column=4, row=1,columnspan=5)
-radioSim4.grid(column=2, row=2)
-radioNao4.grid(column=3, row=2)
+canvas = Canvas(frame_principal, bg="#C0C0C0")
+canvas.pack(side="left", fill="both", expand=True)
 
-titulo5 = Label(janela, 
-                   text="Possui Doença Hepática?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim5 = Radiobutton(janela, 
-                        text="Sim",
-                        variable=radio_Doenca_Hepatica,
-                        value=1,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-radioNao5 = Radiobutton(janela, 
-                       text= "Não", 
-                       variable=radio_Doenca_Hepatica, 
-                       value=0,
-                       font="Roboto 13",
-                       bg = "#C0C0C0"
-                       )
-titulo5.grid(column=4, row=1,columnspan=5)
-radioSim5.grid(column=2, row=2)
-radioNao5.grid(column=3, row=2)
+scrollbar = Scrollbar(frame_principal, orient="vertical", command=canvas.yview)
+scrollbar.pack(side="right", fill="y")
+canvas.configure(yscrollcommand=scrollbar.set)
 
-titulo6 = Label(janela, 
-                   text="Possui Doença Neurológica?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim6 = Radiobutton(janela, 
-                        text="Sim",
-                        variable=radio_Doenca_Hepatica,
-                        value=1,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-radioNao6 = Radiobutton(janela, 
-                       text= "Não", 
-                       variable=radio_Doenca_Hepatica, 
-                       value=0,
-                       font="Roboto 13",
-                       bg = "#C0C0C0"
-                       )
-titulo6.grid(column=4, row=1,columnspan=5)
-radioSim6.grid(column=2, row=2)
-radioNao6.grid(column=3, row=2)
+frame_interno = Frame(canvas, bg="#C0C0C0")
+canvas.create_window((0, 0), window=frame_interno, anchor="nw")
 
-titulo7 = Label(janela, 
-                   text="Possui Doença Renal?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim7 = Radiobutton(janela, 
-                        text="Sim",
-                        variable=radio_Doenca_Renal,
-                        value=1,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-radioNao7 = Radiobutton(janela, 
-                       text= "Não", 
-                       variable=radio_Doenca_Renal, 
-                       value=0,
-                       font="Roboto 13",
-                       bg = "#C0C0C0"
-                       )
-titulo7.grid(column=4, row=1,columnspan=5)
-radioSim7.grid(column=2, row=2)
-radioNao7.grid(column=3, row=2)
+titulo1 = Label(frame_interno, 
+                text="Fatores de risco para Covid-19",
+                font=("Roboto", 20),
+                bg="#C0C0C0",
+                relief="groove",
+                border=1
+                )
+titulo1.grid(column=0, row=0, columnspan=2, pady=(0, 17), padx=20, sticky="w")  # Alinhe à esquerda
 
-titulo8 = Label(janela, 
-                   text="Possui Obesidade?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim8 = Radiobutton(janela, 
-                        text="Sim",
-                        variable=radio_Obesidade,
-                        value=1,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-radioNao8 = Radiobutton(janela, 
-                       text= "Não", 
-                       variable=radio_Obesidade, 
-                       value=0,
-                       font="Roboto 13",
-                       bg = "#C0C0C0"
-                       )
-titulo8.grid(column=4, row=1,columnspan=5)
-radioSim8.grid(column=2, row=2)
-radioNao8.grid(column=3, row=2)
+perguntas_respostas = [
+    ("Possui asma?", radio_Asma),
+    ("Possui cardiopatia?", radio_Cardiopatia),
+    ("Possui diabetes?", radio_Diabetes),
+    ("Possui doença hepática?", radio_Doenca_Hepatica),
+    ("Possui doença neurológica?", radio_Doenca_Neurologica),
+    ("Possui doença renal?", radio_Doenca_Renal),
+    ("Possui obesidade?", radio_Obesidade),
+    ("Possui pneumopatia?", radio_Pneumopatia),
+    ("Possui Síndrome de Down?", radio_Síndrome_De_Down),
+    ("Idade:", box_Idade)
+]
 
-titulo9 = Label(janela, 
-                   text="Possui Pneumopatia?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim9 = Radiobutton(janela, 
-                        text="Sim",
-                        variable=radio_Pneumopatia,
-                        value=1,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-radioNao9 = Radiobutton(janela, 
-                       text= "Não", 
-                       variable=radio_Pneumopatia, 
-                       value=0,
-                       font="Roboto 13",
-                       bg = "#C0C0C0"
-                       )
-titulo9.grid(column=4, row=1,columnspan=5)
-radioSim9.grid(column=2, row=2)
-radioNao9.grid(column=3, row=2)
+coluna = 0
+linha = 1
+largura_maxima_coluna = 800
 
-titulo10 = Label(janela, 
-                   text="Possui Pneumopatia?",
-                   font="Roboto 13",
-                   bg = "#C0C0C0"
-                   )
-radioSim10 = Radiobutton(janela, 
-                        text="Sim",
-                        variable=radio_Pneumopatia,
-                        value=1,
-                        font="Roboto 13",
-                        bg = "#C0C0C0"
-                        )
-radioNao10 = Radiobutton(janela, 
-                       text= "Não", 
-                       variable=radio_Pneumopatia, 
-                       value=0,
-                       font="Roboto 13",
-                       bg = "#C0C0C0"
-                       )
-titulo10.grid(column=4, row=1,columnspan=5)
-radioSim10.grid(column=2, row=2)
-radioNao10.grid(column=3, row=2)
+for pergunta, variavel in perguntas_respostas:
+    label_pergunta = Label(frame_interno, text=pergunta, font=("Roboto", 13), bg="#C0C0C0", anchor="w")
+    label_pergunta.grid(column=coluna, row=linha, padx=20, pady=(10, 0), sticky="w")  # Alinhe à esquerda
+    
+    if pergunta == "Idade:":
+        label_idade = Label(frame_interno, font=("Roboto", 13), bg="#C0C0C0", anchor="w")
+        label_idade.grid(column=coluna, row=linha+1, padx=20, pady=(0, 5), sticky="w")
+        
+        entrada_idade = Entry(frame_interno, textvariable=box_Idade, font=("Roboto", 13))
+        entrada_idade.grid(column=coluna, row=linha+2, padx=20, pady=(0, 10))
+    
+    else:
+        radio_sim = Radiobutton(frame_interno, text="Sim", variable=variavel, value=1, font=("Roboto", 13), bg="#C0C0C0")
+        radio_sim.grid(column=coluna, row=linha+1, padx=20, pady=(0, 10))
+        
+        radio_nao = Radiobutton(frame_interno, text="Não", variable=variavel, value=0, font=("Roboto", 13), bg="#C0C0C0")
+        radio_nao.grid(column=coluna + 1, row=linha+1, padx=20, pady=(0, 10))
+    
 
-idade = Label(janela,
-              text="Idade:",
-              bg= "#C0C0C0"
-            )
-idade.grid(column= 0, row=4,columnspan=5, sticky="w")
-valorIdade = Entry(janela,textvariable=box_Idade,relief="solid")
-valorIdade.grid(column=0, row =5,padx=3)
+    coluna += 2
+    
+    if coluna * 800 >= largura_maxima_coluna:
+        coluna = 0
+        linha += 3
+        
+botaoDiagnostico = Button(frame_interno,
+                          text='Realizar Diagnóstico',
+                          fg='white',
+                          bg='green',
+                          command=diagnosticar,
+                          font=("Roboto", 13),
+                          relief="ridge",
+                          border=2,
+                          )
+botaoDiagnostico.grid(column=0, row=linha+3, columnspan=2, pady=20, padx=20)
 
-botaoDiagnostico = Button(janela,
-               text='Realizar Diagnóstico',
-               fg = 'white', 
-               bg = 'green',
-               command=diagnosticar,
-               font="Roboto 13",
-               relief="ridge",
-               border=2,
-               )
-botaoDiagnostico.grid(column=0, row=7,columnspan=5,pady=20)
+botaoFechar = Button(frame_interno,
+                     text='Fechar',
+                     fg='white',
+                     bg='Red',
+                     command=janela.quit,  # Use janela.quit para fechar a janela principal
+                     font=("Roboto", 13),
+                     relief="ridge",
+                     border=2,
+                     )
+botaoFechar.grid(column=0, row=linha+4, columnspan=2, sticky="w", padx=20)
 
-botaoFechar = Button(janela,text='Fechar',
-               fg = 'white', 
-               bg = 'Red',
-               command=quit,
-               font="Roboto 13",
-               relief="ridge",
-               border=2,
-               )
-botaoFechar.grid(column=1, row=8,columnspan=5,sticky="w")
+canvas.bind("<Configure>", on_canvas_configure)
 
 janela.mainloop()
-
