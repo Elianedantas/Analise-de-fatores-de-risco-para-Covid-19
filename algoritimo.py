@@ -15,18 +15,18 @@ def normalizarDados(base_Treinamento):
     #Transforma valores categóricos equidistantes em valores binários equidistantes.
     #Atributos categóricos com valores sim e não
     lb.fit(['SIM', 'IGNORADO', 'NÃO'])
-    Asma = lb.transform(base_Treinamento[:,1])
-    Cardiopatia = lb.transform(base_Treinamento[:,2])
-    Diabetes = lb.transform(base_Treinamento[:,4])
-    Doenca_Hepatica = lb.transform(base_Treinamento[:,7])
-    Doenca_Neurologica = lb.transform(base_Treinamento[:,8])
-    Doenca_Renal = lb.transform(base_Treinamento[:,9])
-    Obesidade = lb.transform(base_Treinamento[:,14])
-    Pneumopatia = lb.transform(base_Treinamento[:,17])    
-    Síndrome_De_Down = lb.transform(base_Treinamento[:,19])
+    Asma = lb.transform(base_Treinamento[:,0])
+    Cardiopatia = lb.transform(base_Treinamento[:,1])
+    Diabetes = lb.transform(base_Treinamento[:,3])
+    Doenca_Hepatica = lb.transform(base_Treinamento[:,6])
+    Doenca_Neurologica = lb.transform(base_Treinamento[:,7])
+    Doenca_Renal = lb.transform(base_Treinamento[:,8])
+    Obesidade = lb.transform(base_Treinamento[:,13])
+    Pneumopatia = lb.transform(base_Treinamento[:,16])    
+    Síndrome_De_Down = lb.transform(base_Treinamento[:,18])
 
     min_max = preprocessing.MinMaxScaler()
-    Idade = min_max.fit_transform(base_Treinamento[:,11])
+    Idade = min_max.fit_transform(base_Treinamento[:,10].reshape(-1, 1))
 
     #Concatenação de Atributos (Colunas)
     atributos_norm = np.column_stack((Asma,Cardiopatia,Diabetes,Doenca_Hepatica,Doenca_Neurologica,Doenca_Renal,Idade,Obesidade,

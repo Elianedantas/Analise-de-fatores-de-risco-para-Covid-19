@@ -10,7 +10,7 @@ def diagnosticar():
         messagebox.showwarning(title="Resultado do diagnóstico",
         message='Você possui maiores fatores de risco para a covid-19.')     
     else:
-        messagebox.showinfo(title="Resultado do diagnóstico",
+       messagebox.showinfo(title="Resultado do diagnóstico",
         message='Você não possui maiores fatores de risco para a covid-19.')
             
 janela = Tk()
