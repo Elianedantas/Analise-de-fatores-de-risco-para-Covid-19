@@ -40,7 +40,7 @@ def treinarRedePerceptron(atributos_norm, diagnostico_norm):
 
 def Treinar(Asma,Cardiopatia,Diabetes,Doenca_Hepatica,Doenca_Neurologica,Doenca_Renal,Idade,Obesidade,Pneumopatia,Síndrome_De_Down):
     dadosT = normalizarDados(base_Treinamento)
-    diagnostico_norm = base_Treinamento[:, 15]
+    diagnostico_norm = base_Treinamento[:, 14]
 
     modelo = treinarRedePerceptron(dadosT, diagnostico_norm)
 
