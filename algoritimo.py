@@ -4,7 +4,7 @@ from sklearn import preprocessing
 from sklearn.linear_model import Perceptron
 
 #importando a base de dados atraves do gitHub
-url = 'https://raw.githubusercontent.com/Elianedantas/RedeNeuralPerceptronDiabetes/main/Registros_Casos_e_obitos_ESP.csv'
+url = 'https://raw.githubusercontent.com/Elianedantas/Analise-de-fatores-de-risco-para-Covid-19/main/Registros_Casos_e_obitos_ESP.csv'
 base_Treinamento = pd.read_csv(url,sep=',', encoding = 'utf-8').values
 
 #normalizando os dados
