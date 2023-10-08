@@ -11,7 +11,7 @@ base_Treinamento = pd.read_csv(url,sep=',', encoding = 'utf-8').values
 min_max = preprocessing.MinMaxScaler()
 #normalizando os dados
 def normalizarDados(base_Treinamento):
-    return min_max.fit_transform(base_Treinamento[:,:9])
+    return min_max.fit_transform(base_Treinamento[:,:10])
 
 #treinando a rede Knn
 def treinarRedeKNN(atributos_norm,diagnostico_norm):
