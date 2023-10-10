@@ -3,10 +3,9 @@ import algoritimo as a
 from tkinter import messagebox
 
 def diagnosticar():
-
     if a.Treinar(radio_Asma.get(), radio_Cardiopatia.get(), radio_Diabetes.get(), radio_Doenca_Hepatica.get(), 
         radio_Doenca_Neurologica.get(), radio_Doenca_Renal.get(), box_Idade.get(), radio_Obesidade.get(), 
-        radio_Pneumopatia.get(), radio_Doenca_Hematologica.get()) == 1:
+        radio_Pneumopatia.get()) == 1:
         messagebox.showwarning(title="Resultado do diagnóstico",
         message='Você possui maiores fatores de risco para a covid-19.')     
     else:
@@ -18,7 +17,6 @@ janela = Tk()
 radio_Asma = IntVar()
 radio_Cardiopatia = IntVar()
 radio_Diabetes = IntVar()
-radio_Doenca_Hematologica = IntVar()
 radio_Doenca_Hepatica = IntVar()
 radio_Doenca_Neurologica = IntVar()
 radio_Doenca_Renal = IntVar()
@@ -64,7 +62,6 @@ perguntas_respostas = [
     ("Possui asma?", radio_Asma),
     ("Possui cardiopatia?", radio_Cardiopatia),
     ("Possui diabetes?", radio_Diabetes),
-    ("Possui doença hematologica?", radio_Doenca_Hematologica),
     ("Possui doença hepática?", radio_Doenca_Hepatica),
     ("Possui doença neurológica?", radio_Doenca_Neurologica),
     ("Possui doença renal?", radio_Doenca_Renal),
